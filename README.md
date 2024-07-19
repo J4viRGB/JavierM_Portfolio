@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Noto+Sans+KR:wght@100;900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT ME</title>
+
+    <!-- STYLESHEET -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1 class="anton-sc-regular">ABOUT ME</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="https://www.youtube.com/@FaizalWestcott">Media</a></li>
+            <li>
+                <a href="">Contact</a>
+                <ul>
+                    <li><a onclick="sendEmail()">Email</a></li>
+                    <li><a href="https://www.instagram.com/throughjaviseyes?igsh=am82azJ1NGYxMDFo&utm_source=qr">Instagram</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="about-section">
+            <h1>About Me</h1>
+            <img src="profile.jpg" alt="Profile Picture">
+            <p>Hello! My name is Javier, and I am a Photographer. I have a passion for Street Photography</p>
+            <p>In my free time, I enjoy to go out and take photos, and I am always looking for new opportunities to grow and learn. Feel free to reach out if you want to connect or collaborate on any exciting projects!</p>
+        </div>
+
+        <div class="slider-container">
+            <div class="slider-content">
+                <div class="slider-item">
+                    <img src="imagen1.jpg" alt="Imagen 1">
+                </div>
+                <div class="slider-item">
+                    <img src="imagen2.jpg" alt="Imagen 2">
+                </div>
+                <div class="slider-item">
+                    <img src="imagen3.jpg" alt="Imagen 3">
+                </div>
+            </div>
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+    </main>
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function plusSlides(n) {
+            slideIndex += n;
+            showSlides();
+        }
+
+        function showSlides() {
+            const slides = document.querySelectorAll(".slider-item");
+            if (slideIndex >= slides.length) {
+                slideIndex = 0;
+            }
+            if (slideIndex < 0) {
+                slideIndex = slides.length - 1;
+            }
+            const slideWidth = slides[0].clientWidth;
+            document.querySelector(".slider-content").style.transform = `translateX(${-slideIndex * slideWidth}px)`;
+
+            setTimeout(() => {
+                slideIndex++;
+                showSlides();
+            }, 3000); // Cambia la imagen cada 2 segundos
+        }
+
+        function sendEmail() {
+            var recipient = "javiermarreronoriega@gmail.com"; // Cambia esto con el correo deseado
+            var subject = "Asunto del correo";
+            var body = "Este es el cuerpo del correo.";
+
+            var mailto_link = "mailto:" + recipient + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+
+            window.location.href = mailto_link;
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2024</p>
+    </footer>
+</body>
+</html>
