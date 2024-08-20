@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head> <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
+    <!-- Especifica el tipo de documento y la versión de HTML -->
+    <meta charset="UTF-8">
+    <!-- Configura el viewport para que el sitio sea responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Título de la página que aparece en la pestaña del navegador -->
+    <title>THROUGH MY EYES</title>
+
+    <!-- STYLESHEET -->
+    <link rel="stylesheet" href="styles.css">
+     <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+</head>
+
+<body>
+    <!-- Sección de encabezado del sitio -->
+    <header>
+        <div class="animate__animated animate__flash">
+             <h1 class="anton-sc-regular">THROUGH MY EYES</h1></div>
+        <p>Day by Day photography </p>
+    </header>
+    <!-- Barra de navegación con enlaces -->
+    <nav>
+        <ul> 
+            <li><a href="About me.html">ABOUT ME</a></li>
+            <li><a href="https://www.youtube.com/@FaizalWestcott">MEDIA</a></li>
+            <li><a href="Portafolio.html">PORTFOLIO</a></li>
+                        <li>
+                <a href="">CONTACT</a>
+                <ul>   
+                    <li><a onclick="sendEmail()">EMAIL</a></li>
+                    <li><a href="https://www.instagram.com/throughjaviseyes?igsh=am82azJ1NGYxMDFo&utm_source=qr">INSTAGRAM</a></li>  
+                </ul>             
+             </li>  
+        </ul>   
+    </nav>
+
+    <!-- Contenido principal de la página -->
+        <iframe width="780" height="315" src="https://www.youtube.com/embed/Ev5IdBxDyr4?si=dCcuuT1ibiEEEpvM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+     <div class="about-section">
+         <div class="tenor-sans-regular">
+    <a>My name is Javier Marrero, and I am a street photographer dedicated to uncovering the hidden narratives of urban life. With a sharp eye for detail and a deep passion for capturing the unspoken stories of the streets, I transform ordinary moments into extraordinary visual tales. Over the years, I've roamed the bustling avenues and quiet alleys of cities around the world, always ready to capture the perfect shot that encapsulates the essence of human emotion.
+
+My photography is defined by its raw honesty—each image I take is a glimpse into the soul of a city, reflecting the diversity, struggles, and joys of its people. What sets my work apart is my ability to find beauty in the mundane. Whether it's a fleeting smile between strangers, the resilience of a street vendor, or the solitude of a lone commuter, my photos are a testament to the power of the moment.
+
+More than just technical skills, I bring a deep empathy to my work. I believe that every face has a story, and every corner of a city holds a piece of its history. My images are more than just pictures—they are narratives that invite viewers to pause and reflect on the world around them, helping them feel connected to the broader human experience.
+
+With a portfolio that spans continents, I continue to inspire others with my authentic and evocative portrayal of life on the streets. My work not only captures the visual aspects of urban environments but also serves as a powerful commentary on the social dynamics and emotions that define them.</a>
+    </div>
+    </div>
+
+    <!--Unsplash photo Search API-->
+ <h1>Unsplash Photo Search</h1>
+    <input type="text" id="query" placeholder="Enter search term">
+    <button onclick="searchPhotos()">Search</button>
+    <div id="photos"></div>
+<main>
+    <script>
+        //Unsplash Photo Search API
+        const API_KEY = 'kq-WQmO8mCrHSQuyri6Oz1XRMtFjxTRQLQuq0aTkXPI';
+
+        async function searchPhotos() {
+            const query = document.getElementById('query').value;
+            const response = await fetch(`https://api.unsplash.com/search/photos?query=${query}&client_id=${API_KEY}`);
+            const data = await response.json();
+            const photosDiv = document.getElementById('photos');
+
+            photosDiv.innerHTML = ''; // Limpiar resultados anteriores
+
+            data.results.forEach(photo => {
+                const img = document.createElement('img');
+                img.src = photo.urls.small;
+                img.alt = photo.alt_description;
+                img.className = 'photo';
+                photosDiv.appendChild(img);
+            });
+        }
+//configuracon para el correo
+        function sendEmail() {
+            var recipient = "javiermarreronoriega@gmail.com"; // Cambia esto con el correo deseado
+            var subject = "Asunto del correo";
+            var body = "Este es el cuerpo del correo.";
+
+            var mailto_link = "mailto:" + recipient + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+
+            window.location.href = mailto_link;
+        }
+    </script>
+</main>
+    <!-- Pie de página del sitio -->
+      <footer>
+        <p>&copy; 2024 </p>
+    </footer>
+</body>
+</html>
